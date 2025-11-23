@@ -155,7 +155,7 @@
 // If defined, rotates the display 180 degrees. This might not rotate the panel scan order though,
 // so adding this can cause up to one vsync worth of extra display latency. It is best to avoid this and
 // install the display in its natural rotation order, if possible.
-// #define DISPLAY_ROTATE_180_DEGREES
+#define DISPLAY_ROTATE_180_DEGREES
 
 // If defined, displays in landscape. Undefine to display in portrait.
 #define DISPLAY_OUTPUT_LANDSCAPE
@@ -174,7 +174,7 @@
 
 // If defined, inverts display pixel colors (31=black, 0=white). Default is to have (0=black, 31=white)
 // Pass this if the colors look like a photo negative of the actual image.
-// #define DISPLAY_INVERT_COLORS
+#define DISPLAY_INVERT_COLORS
 
 // If defined, flipping the display between portrait<->landscape is done in software, rather than
 // asking the display controller to adjust its RAM write direction.
@@ -192,10 +192,10 @@
 
 // If enabled, build to utilize DMA transfers to communicate with the SPI peripheral. Otherwise polling
 // writes will be performed (possibly with interrupts, if using kernel side driver module)
-// #define USE_DMA_TRANSFERS
+#define USE_DMA_TRANSFERS
 
 // If defined, enables code to manage the backlight.
-// #define BACKLIGHT_CONTROL
+#define BACKLIGHT_CONTROL
 
 #if defined(BACKLIGHT_CONTROL)
 
