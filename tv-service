@@ -1,0 +1,29 @@
+# sudo nano /etc/systemd/system/bootvideo.service
+# sudo systemctl daemon-reload
+# sudo systemctl enable bootvideo.service
+# sudo systemctl start bootvideo.service
+[Unit]
+Description=Play Video after Boot (Login Screen)
+# Ensure it runs after standard system initialization
+After=systemd-user-sessions.service plymouth-quit-wait.service gettys.target
+# Only run if the video file actually exists
+ConditionPathExists=/home/spi/player/video.mp4
+
+[Service]
+# Type=idle ensures the service waits until other jobs are dispatched (smoother boot)
+Type=idle
+# Run as root to ensure access to hardware video acceleration without permission issues
+User=root
+Group=root
+
+# omxplayer arguments:
+# -b        : Blank background (black borders)
+# --no-osd  : Do not display On-Screen Display (status text)
+# --no-keys : Disable keyboard input (prevents interference with login typing)
+ExecStart=/usr/bin/omxplayer --loop -b --no-osd --no-keys /home/spi/player/video.mp4
+
+# Restart policy (optional, remove if you only want it to play once)
+# Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
